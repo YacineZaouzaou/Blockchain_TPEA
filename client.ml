@@ -12,16 +12,34 @@ let () = connect s addr
 let out_ch = out_channel_of_descr s
 let in_ch = in_channel_of_descr s
 
-let size = "0010100000000000000000000000000000000000000000000000000000000000"
+let bytes_of_int i =
+  let ibuf = Bytes.create 8 in
+  Bytes.set_int64_be ibuf 0 (Int64.of_int i);
+  ibuf
 
-let () = output_string out_ch (size^"{register:123456789}")
+let message = "{get_letterpool_since:0}"
+
+let message = "{get_full_wordpool:null}"
+
+
+(*let message = "{register:123456789zedzedfsq}"*)
+
+let pack = Bytes.cat (bytes_of_int (String.length message)) (Bytes.of_string message)
+
+let () = output_bytes out_ch pack
 let () = flush out_ch
-  
+
 let () =
-  if Sys.big_endian
-  then begin print_string "Big-endian"; print_newline(); end
-  else  begin print_string "No big-endian"; print_newline(); end
 
+let i = ref 0 in
 
-let () = print_string "Fin!" ; print_newline()
+  while (!i) < 100 do
 
+    let reponse = input_char in_ch in
+
+    print_string (Char.escaped reponse);
+
+    i := !i +1
+  done;
+
+print_newline()
