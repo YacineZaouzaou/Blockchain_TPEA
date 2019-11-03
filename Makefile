@@ -1,20 +1,20 @@
-OUT = a.out
-
-SOURCES = client.ml
-
-CAMLC = ocamlc
-
-WITHUNIX = unix.cma -cclib -lunix
-LIBS = $(WITHUNIX)
-
-OBJS = $(SOURCES:.ml=.cmo)
-
 all:
-	$(CAMLC) -c $(SOURCES)
-	$(CAMLC) $(LIBS) $(OBJS) -o $(OUT)
-
-run: all
-	./$(OUT)
-
+	dune build author.exe politician.exe
+	cp ./_build/default/author.exe author
+	cp ./_build/default/politician.exe politician
+run_author: all
+	./author
+run_politician: all
+	./politician 12345
+run : all
+	./politician 12345 &
+	./politician 12345 &
+	./author &
+	./author &
+	./author &
+	./author &
+	./author &
+	./author &
 clean:
-	rm -f $(OUT) *.cmi *.cmo *~
+	dune clean
+	rm -f dune-project author politician *~ \#* .\#*

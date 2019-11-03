@@ -1,0 +1,15 @@
+(
+executables
+ (names author politician)
+ (libraries
+        yojson
+        ppx_deriving_yojson.runtime
+        ppx_deriving.runtime
+        lwt lwt_ppx lwt.unix
+        hex
+        hacl
+        stdlib
+        unix
+        bigstring
+        ) 
+)	
