@@ -204,7 +204,6 @@ let main args =
               valid_letters := new_valid_letters;
               print_string "lettres valides : ";
               List.iter (fun l -> Printf.printf ("%s ") (l.letter)) !valid_letters;
-              print_int (List.length new_valid_letters);
               print_newline();
               flush stdout;
               find_word !valid_letters hash

@@ -1,6 +1,6 @@
 # Blockchain_TPEA
 
-Utiliser le serveur en mode -no-check-sigs
+Utiliser le serveur en mode -no-check-sigs. Par défaut, le serveur doit être lancé en parallèle sur l'adresse localhost.
 
 Pour lancer un tour à tour de 6 étapes entre 6 auteurs et 2 politiciens, exécuter la commande :
 
